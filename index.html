@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDPonto - Painel do Administrador</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Inclua a biblioteca Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container-menu">
+            <img src="logooficial.png" alt="Logo Grupo DDLimp" class="logo">
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="dashboard">
+            <h2 style="text-align: start;">Seja bem vindo(a) ao Painel do DDPonto</h2>
+            <p style="text-align: start;">Visualize os dados dos colaboradores, importando a tabela abaixo.</p>
+
+            <!-- Botão para importar arquivo Excel -->
+            <div style="text-align: start;" class="importar-container">
+                <label for="arquivoExcel" class="botao-importar">Importar Tabela do Excel</label>
+                <input type="file" id="arquivoExcel" accept=".xlsx, .xls" style="display: none;">
+            </div>
+
+            <!-- Filtro -->
+            <div style="text-align: start;" class="filtro-container">
+                <label for="filtro">Filtrar por:</label>
+                <select style="padding: 10px;" id="filtro">
+                    <option value="todos">Todos</option>
+                    <option value="positivos">Colaboradores Positivos</option>
+                    <option value="negativos">Colaboradores Negativos</option>
+                    <option value="administrativo">Equipe Administrativo</option>
+                    <option value="bg">Equipe BG</option>
+                    <option value="ddlimp">Equipe DDLimp</option>
+                    <option value="jateamento">Equipe Jateamento</option>
+                    <option value="prefeitura">Equipe Prefeitura</option>
+                </select>
+            </div>
+
+            <!-- Botões de Imprimir e Exportar para PDF -->
+            <div style="justify-content:end;" class="botoes-acoes-container">
+                <button id="botaoImprimir" class="botao-importar">
+                    <i class="fas fa-print"></i> Imprimir
+                </button>
+                <button id="botaoExportarPDF" class="botao-importar">
+                    <i class="fas fa-file-pdf"></i> Exportar para PDF
+                </button>
+            </div>
+
+            <!-- Cards de Resumo -->
+            <div class="cards-container">
+                <div class="card">
+                    <h3>Total de Colaboradores</h3>
+                    <p id="totalColaboradores">0</p>
+                </div>
+                <div class="card">
+                    <h3>Colaboradores Positivos</h3>
+                    <p id="colaboradoresPositivos">0</p>
+                </div>
+                <div class="card">
+                    <h3>Colaboradores Negativos</h3>
+                    <p id="colaboradoresNegativos">0</p>
+                </div>
+            </div>
+
+            <!-- Tabela de Colaboradores -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar colaborador..." class="search-input">
+                <button onclick="filtrarColaboradores()" class="search-button">Buscar</button>
+            </div>
+            
+            <table id="tabelaColaboradores">
+                <thead>
+                    <tr>
+                        <th>Matrícula</th>
+                        <th>Funcionário</th>
+                        <th>
+                            <div class="ordenacao-container">
+                                Saldo no Período
+                                <button id="botaoOrdenacao" class="botao-ordenar">
+                                    <i class="fas fa-sort"></i>
+                                </button>
+                                <div id="menuOrdenacao" class="menu-ordenacao">
+                                    <div class="opcao-ordenacao" data-ordem="maiorParaMenor">Maior para Menor</div>
+                                    <div class="opcao-ordenacao" data-ordem="menorParaMaior">Menor para Maior</div>
+                                </div>
+                            </div>
+                        </th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados dos colaboradores serão inseridos aqui via JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Copyright Grupo DDLimp. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Inclua a biblioteca SheetJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <!-- Inclua a biblioteca jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.27/jspdf.plugin.autotable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
